@@ -94,9 +94,11 @@ public class DubboConsumerAutoConfiguration {
                                         consumerBean.afterPropertiesSet();
 
                                         // 理论上dubboReference不能为空，否则就会抛NullPointerException了
+                                        LOG.info("begin to fetch consumerBean, class={}, field={}", objClz, field);
                                         dubboReference = consumerBean.getObject();
                                         DubboConsumerAutoConfiguration.DUBBO_REFERENCES_MAP.put(classIdBean,
                                                 dubboReference);
+                                        LOG.info("fetch consumerBean complete, class={}, field={}", objClz, field);
                                     }
                                 }
                             }

@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import com.alibaba.boot.dubbo.annotation.DubboConsumer;
 import com.alibaba.boot.dubbo.annotation.EnableDubboConfiguration;
 import com.alibaba.boot.dubbo.domain.ClassIdBean;
+import com.alibaba.boot.dubbo.domain.SpringBootStarterDubboConstants;
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.dubbo.config.spring.ReferenceBean;
@@ -170,7 +171,7 @@ public class DubboConsumerAutoConfiguration {
         String url = dubboConsumer.url();
         consumerBean.setUrl(url);
         String protocol = dubboConsumer.protocol();
-        consumerBean.setProtocol(protocol);
+        consumerBean.setProtocol(StringUtils.isBlank(protocol) ? SpringBootStarterDubboConstants.PROTOCOL_DUBBO : protocol);
         boolean check = dubboConsumer.check();
         consumerBean.setCheck(check);
         boolean lazy = dubboConsumer.lazy();
